@@ -1,0 +1,31 @@
+.wrapper {
+  text-align: start;
+}
+.wrapper .img {
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  margin-bottom: 20px;
+}
+.wrapper .img i {
+  font-size: 25px;
+}
+.containerss {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; 
+  align-items: flex-start; 
+}
+.wrapper .product {
+  padding: 30px;
+width: 80rem; 
+
+}
+.wrapper .product h3 {
+  font-weight: 500;
+}
+.wrapper p {
+  font-size: 15px;
+  margin-top: 20px;
+  color: grey;
+}

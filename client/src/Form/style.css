@@ -1,0 +1,23 @@
+
+/* bootstrapValidatorStyles.css */
+#contact_form .form-group {
+    margin-bottom: 15px;
+}
+
+#contact_form .input-group-addon {
+    background-color: #f0f0f0;
+    border: 1px solid #e5e5e5;
+}
+
+#contact_form .glyphicon {
+    margin-right: 5px;
+
+}
+
+#contact_form .form-control-feedback {
+    right: 15px;
+}
+
+#contact_form .alert {
+    display: none;
+}
