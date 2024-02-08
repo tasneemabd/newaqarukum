@@ -77,13 +77,14 @@ const Product = () => {
       top: '50%',
       left: '50%',
       transform: 'translate(-50%, -50%)',
-      opacity: 0.5, 
-      fontSize: '24px', 
+      opacity: 0.2, 
+      fontSize: '90px', 
       fontWeight: 'bold', 
-      color: 'white', 
+      fontfamily: 'Cairo',
+       color: '#b8d8b6', 
     }}
   >
-    Your Watermark Text
+   عقاركم
   </div>
 </div>
 </div>
@@ -104,8 +105,8 @@ const Product = () => {
                                                 سداد مديونيات وتوفير الدفعه المقدمه بدون فوايد
                                                 جميع العروض والاسعار المناسبه لجميع الشرائح
                                                 0535736454.  0549620387</p>
-                                            <p className="font-italic mb-1">Lives in New York</p>
-                                            <p className="font-italic mb-0">Photographer</p>
+                                            {/* <p className="font-italic mb-1">Lives in New York</p>
+                                            <p className="font-italic mb-0">Photographer</p> */}
                                         </div>
                                     </div>
                                     {/* <div className="d-flex justify-content-between align-items-center mb-4">
@@ -192,36 +193,36 @@ const Product = () => {
 </tr>
 <tr>
 <td className="text-left">
-  مدخل سيارة: {ad.inVilla ? <i className="fas fa-check"></i> : null}
+  مدخل سيارة: {ad.inVilla ? <i className="fa-solid fa-circle-check" style={{ color: '#008d6a' }}></i> : null}
 </td>
 
-<td class="text-left">مدخل سيارة
-مدخل سيارة: {ad.inVilla ? <i className="fas fa-check"></i> : null}
+<td class="text-left"> 
+مدخل سيارة: {ad.inVilla ? <i className="fa-solid fa-circle-check" style={{ color: '#008d6a' }}></i> : null}
 
 </td>
 </tr>
 <tr>
 <td class="text-left">رخصة الإعلان
-{ad.inVilla ? <i className="fas fa-check"></i> : null}
+: {ad.inVilla ? <i className="fas fa-check"></i> : null}
 
 </td>
 <td class="text-left"> توفر مكيفات
-{ad.airConditioning ? <i className="fas fa-check"></i> : null}
+: {ad.airConditioning ? <i className="fa-solid fa-circle-check" style={{ color: '#008d6a' }}></i> : null}
 </td>
 </tr>
 <tr>
 <td class="text-left">رقم الإعلان:{ad.AdvertiserNum}
 </td>
 <td class="text-left"> توفر كهرباء
-{ad.electricityAvailability ? <i className="fas fa-check"></i> : null}
+: {ad.electricityAvailability ? <i className="fa-solid fa-circle-check" style={{ color: '#008d6a' }}></i> : null}
 </td>
 </tr>
 <tr>
 <td class="text-left">توفر صرف صحي {}
-{ad.inVilla ? <i className="fas fa-check"></i> : null}
+: {ad.inVilla ? <i className="fa-solid fa-circle-check" style={{ color: '#008d6a' }}></i>: null}
 </td>
-<td class="text-left">توفر الماء
-{ad.inVilla ? <i className="fas fa-check"></i> : null}
+<td class="text-left" >توفر الماء   
+: {ad.inVilla ?   <i className="fa-solid fa-circle-check" style={{ color: '#008d6a' }}></i> : null}
 </td>
 </tr>
 </tbody>

@@ -8,7 +8,7 @@ const Head = () => {
     <div className='left row d_flex'> 
       <i className='fa fa-envelope d_flex'></i>
       <a href='https://twitter.com/aqarukum57525' target='_blank' rel='noopener noreferrer' style={{ color: "#FFF"  }}>
-  Twitter
+  X
 </a>
 
     </div>

@@ -4,7 +4,7 @@
 // MultiStepForm.js
 import React, { useEffect, useState } from 'react';
 import './MultiStepForm.css';
-import { Form, FormCheckLabel, FormControl, FormLabel } from 'react-bootstrap';
+import { Button, Form, FormCheckLabel, FormControl, FormLabel } from 'react-bootstrap';
 import { Checkbox, FormControlLabel, RadioGroup } from '@mui/material';
 import Slider from '@mui/material/Slider';
 import Radio from '@mui/material/Radio';
@@ -12,6 +12,7 @@ import renderApartmentForm from './renderApartmentForm ';
 import RenderLandForm from './RenderLandForm';
 import { useLocation, useHistory } from "react-router-dom";
 import {jwtDecode} from 'jwt-decode';
+import Modal from 'react-modal';
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
@@ -55,7 +56,12 @@ const MultiStepForm = () => {
   const [roomCount, setRoomCount] = useState(1);
   const [propertyType, setPropertyType] = useState(''); // Default property type
   const [tokenDecoded, setTokenDecoded] = useState(false);
-  const [userId, setuserId] = useState(false);
+  const [AdvertiserEmail, setAdvertiserEmail] = useState('');
+
+
+
+  const [showSuccessModal, setShowSuccessModal] = useState('');
+
   useEffect(() => {
     const getAuthToken = localStorage.getItem('token');
     const decodedToken = getAuthToken ? jwtDecode(getAuthToken) : null;
@@ -65,9 +71,9 @@ const MultiStepForm = () => {
       // Update the state with the decoded token and setTokenDecoded to true
       setTokenDecoded(true);
       // Now you can access properties from decodedToken, such as userId
-      const userId = decodedToken.email;
+      const AdvertiserEmail = decodedToken.email;
       // Set the userId in the state
-      setuserId(userId);
+      setAdvertiserEmail(AdvertiserEmail);
     }
   }, []);
     
@@ -121,8 +127,8 @@ const MultiStepForm = () => {
     formData.append('price', price);
     formData.append('showPlannedInfo', showPlannedInfo);
     formData.append('numPiece', numPiece);
-    formData.append('userId', userId);
-    console.log(userId)
+    formData.append('AdvertiserEmail', AdvertiserEmail);
+    console.log(AdvertiserEmail)
 
   try {
     const response = await fetch('http://localhost:9000/users/addadvertisement', {
@@ -137,13 +143,14 @@ const MultiStepForm = () => {
 
     if (response.ok) {
       console.log('Form submitted successfully!');
-      alert('Form submitted successfully!');
-      window.location.href='/'
-
+      setShowSuccessModal(true); // Set the state to show the success modal
+      console.log('showSuccessModal value:', showSuccessModal);
+       window.location.href = '/';
+    
       // Handle redirection here
     } else {
       console.error('Form submission failed.');
-      alert('Form submitted !');
+      alert('Form not  submitted !');
     }
   } catch (error) {
     console.error('Error submitting the form:', error);
@@ -343,7 +350,7 @@ const handlePropertyTypeChange = (e) => {
          
          
           case 'apartment':
-            case 'apartmentsForRent':
+         
             case 'ApartmentsForSale':
             case 'FurnishedApartments':
 
@@ -614,10 +621,10 @@ const handlePropertyTypeChange = (e) => {
           </Form.Group>
           <Form.Group id="propertyType">
   <Form.Label>نوع العقار</Form.Label>
-  <Form.Control as="select" value={propertyType} name="propertyType" onChange={(e) => setPropertyType(e.target.value)}>
-  <option value="apartment">شقة للبيع</option>
+  <Form.Control as="select" value={propertyType} name="propertyType" onChange={(e) => setPropertyType(e.target.value)} >
+  <option value="ApartmentsForSale">شقة للبيع</option>
   <option value="land">أرض للبيع</option>
-  <option value="apartmentsForRent">شقة للايجار </option>
+  <option value="apartment">شقة للايجار </option>
   <option value="FurnishedApartments">شقة مفروشة</option>
   <option value="WarehousesForRent">مستودع للإيجار</option>
   <option value="VillasForRent">استراحة للإيجار</option>
@@ -677,7 +684,25 @@ const handlePropertyTypeChange = (e) => {
           </a> */}
         </fieldset>
       )}
+         {/* Step 6: Success Modal */}
+{showSuccessModal && (
+  <Modal show={true} onHide={() => setShowSuccessModal(false)}>
+    <Modal.Header closeButton>
+      <Modal.Title>تم نشر الإعلان بنجاح!</Modal.Title>
+    </Modal.Header>
+    <Modal.Body>
+      شكرًا لنشر الإعلان. يمكنك مشاهدة الإعلان الخاص بك على الصفحة الرئيسية.
+    </Modal.Body>
+    <Modal.Footer>
+      <Button variant="primary" onClick={() => setShowSuccessModal(false)}>
+        إغلاق
+      </Button> 
+    </Modal.Footer>
+  </Modal>
+)}
+
       </form>
+     
     </div>
     
   );

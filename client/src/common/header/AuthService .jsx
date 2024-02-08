@@ -15,7 +15,24 @@ class AuthService {
     static isLoggedIn() {
       return !!this.getToken();
     }
-  }
+
+
+    static logout() {
+      // Your logout logic here
+      // For example, clearing local storage or sending a logout request to the server
+      localStorage.removeItem('token');
+    }
+  
+  
+  }// AuthService.js
+
+
+
+
+ 
+
+  
+
   
   export default AuthService;
   

@@ -8,44 +8,44 @@ const Categories = () => {
 
   const data = [
     {
-      cateImg: "./images/category/cat1.png",
+      cateImg: "./images/category/c1.png",
       cateName: "شقق للايجار",
     },
     {
-      cateImg: "./images/category/cat2.png",
+      cateImg: "./images/category/c3.png",
       cateName: "أراضي للبيع",
     },
     
     {
-      cateImg: "./images/category/cat4.png",
+      cateImg: "./images/category/c4.png",
       cateName: "شقق للبيع",
     },
     {
-      cateImg: "./images/category/cat5.png",
+      cateImg: "./images/category/c1.png",
       cateName: "عمائر للبيع",
     },
     {
-      cateImg: "./images/category/cat6.png",
+      cateImg: "./images/category/c10.png",
       cateName: "محلات للايجار",
     },
     {
-      cateImg: "./images/category/cat7.png",
+      cateImg: "./images/category/c2.png",
       cateName: "استراحة للبيع",
     },
     {
-      cateImg: "./images/category/cat8.png",
+      cateImg: "./images/category/c6.png",
       cateName: "مزرعة للبيع",
     },
     {
-      cateImg: "./images/category/cat9.png",
+      cateImg: "./images/category/c9.png",
       cateName: "استراحة للايجار",
     },
     {
-      cateImg: "./images/category/cat10.png",
+      cateImg: "./images/category/c5.png",
       cateName: "مستودع للايجار",
     },
     {
-      cateImg: "./images/category/cat11.png",
+      cateImg: "./images/category/c4.png",
       cateName: "شقة مفروشة",
     },
   ]

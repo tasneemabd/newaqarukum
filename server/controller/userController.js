@@ -72,15 +72,14 @@ exports.loginUser = async (req, res) => {
 
 exports.Add_Advertisement = async (req, res) => {
   try {
-    // Get the logged-in user's email from the request object
-    const userEmail = req.loggedInUserEmail;
-    
+  
 
     // Upload image to cloudinary
     const result = await cloudinary.uploader.upload(req.file.path);
 
-    // Extract advertisement details from the request body
+
     const {
+      AdvertiserEmail,
       propertyType,
       numPlanned,
       numPiece,
@@ -105,13 +104,15 @@ exports.Add_Advertisement = async (req, res) => {
       twoEntrances,
       floorNumber,
       roomCount,
+      AdvertiserNum,
       AdvertiserName,
     } = req.body;
 
     // Create a new advertisement
     const newAdvertisement = new Advertisement({
       AdvertiserName,
-    
+      AdvertiserNum,
+      AdvertiserEmail,
       propertyType,
       numPlanned,
       numPiece,
@@ -139,7 +140,7 @@ exports.Add_Advertisement = async (req, res) => {
       avatar: result.secure_url,
       cloudinary_id: result.public_id,
     });
-    console.log( "ddd"+userEmail)
+
     // Save the advertisement
     await newAdvertisement.save();
 
@@ -196,14 +197,13 @@ exports.getAdvertisementById = async (req, res) => {
 exports.getallAdvertisementu = async (req, res) => {
   try {
     // Get the logged-in user's email from the request object
-    const userEmail = req.loggedInUserEmail;
+    const AdvertiserEmail = req.loggedInUserEmail;
 
     // Use a case-insensitive query to find advertisements based on the logged-in user's email
     const Advertisements = await Advertisement.find({
-      AdvertiserNum: { $regex: new RegExp(userEmail, 'i') },
+      AdvertiserEmail: { $regex: new RegExp(AdvertiserEmail, 'i') },
     });
-
-    console.log(userEmail, Advertisements);
+    console.log(AdvertiserEmail, Advertisements);
     res.status(200).json(Advertisements);
   } catch (error) {
     console.error('Error fetching advertisements:', error);
@@ -213,6 +213,32 @@ exports.getallAdvertisementu = async (req, res) => {
 
 
 
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error fetching users:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+exports.deleteUser = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deleteduser= await User.findByIdAndDelete(id);
+
+    // Check if the advertisement was found and deleted
+    if (!deleteduser) {
+      return res.status(404).json({ message: 'user not found' });
+    }
+
+    res.status(200).json({ message: 'user deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting user by ID:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}
 // const { User, Advertisement } = require('../Models/Models');
 // const cloudinary = require("../utils/cloudinary");
 

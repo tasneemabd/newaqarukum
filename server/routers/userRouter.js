@@ -30,6 +30,8 @@ router.route("/signup").post(userController.signup);
 
 router.route("/login").post(userController.loginUser);
 router.route('/allAdvertisement').get(userController.getallAdvertisement);
+router.route('/getAllUsers').get(userController.getAllUsers);
+router.route('/deleteUser/:id').delete(userController.deleteUser);
 router.route('/deleteAdvertisement/:id').delete(userController.deleteAdvertisement);
 router.route('/getAdvertisementById/:id').get(userController.getAdvertisementById);
 router.route('/allAdvertisementu').get(authMiddleware, userController.getallAdvertisementu);

@@ -13,7 +13,7 @@
     //   path: { type: String, required: true },
     // }],
     AdvertiserName: { type: String, required: false },
-    AdvertiserNum: { type: String, },
+    AdvertiserNum: { type: String,required: false },
     numPlanned: { type: String, required: false },
   numPiece: { type: String, 
     required: false },
@@ -54,12 +54,16 @@
     propertyType: {
       type: String,
       enum: ['land', 'apartment', 'BuildingsForSale', 'ShopsForRent', 'VillasForSale', 'FarmsForSale', 'VillasForRent', 'WarehousesForRent', 'FurnishedApartments',"apartmentsForRent"],
-      default: 'land',},
+      default: 'ApartmentsForSale',},
       cloudinary_id: {
         type: String,
       },
       avatar: {
         type: String,
+      },
+      AdvertiserEmail: {
+        type: String,
+        required: false
       },
 
   }, { collection: 'Advertisement-data' });

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";  // Import useHistory from react-router-dom
+import { useHistory } from "react-router-dom";
 import {
   BoldLink,
   BoxContainer,
@@ -16,9 +16,11 @@ export function LoginForm(props) {
   const { switchToSignup } = useContext(AccountContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-
-  const history = useHistory();  // Initialize useHistory
+  const [showErrorBox, setShowErrorBox] = useState(false); 
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showSuccessBox, setShowSuccessBox] = useState(false);  // New state for success message
+  const [successMessage, setSuccessMessage] = useState('');  // New state for success message
+  const history = useHistory();
 
   async function loginUser(event) {
     event.preventDefault();
@@ -38,14 +40,17 @@ export function LoginForm(props) {
 
     if (data.user) {
       localStorage.setItem('token', data.user);
-      alert("Login successful");
-      window.location.href='/home'
-
-      
+      setSuccessMessage("Login successful!");  // Set success message
+      setShowSuccessBox(true);  // Display success box
+      setShowErrorBox(false);  // Hide error box
+      history.push('/');  // Use history.push instead of window.location.href
     } else {
-      alert("Please check your username or password");
+      setErrorMessage("Please check your username or password");
+      setShowErrorBox(true);
+      setShowSuccessBox(false);  // Hide success box
     }
   }
+
 
   return (
     <BoxContainer>
@@ -62,16 +67,26 @@ export function LoginForm(props) {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-       
-        
         <Marginer direction="vertical" margin={10} />
         <MutedLink href="#">  هل نسيت الرقم السري؟</MutedLink>
         <Marginer direction="vertical" margin="1.6em" />
         <SubmitButton type="submit">تسجيل دخول</SubmitButton>
+
+        {/* Conditionally render the error box */}
+        {showErrorBox && (
+          <div style={{ border: '1px solid red', padding: '10px', margin: '10px', borderRadius: '5px', color: 'red' }}>
+            {errorMessage}
+          </div>
+        )}
+           {showSuccessBox && (
+          <div style={{ border: '1px solid green', padding: '10px', margin: '10px', borderRadius: '5px', color: 'green' }}>
+            {successMessage}
+          </div>
+        )}
       </FormContainer>
       <Marginer direction="vertical" margin="5px" />
       <LineText>
-       ليس لديك حساب؟{" "}
+        ليس لديك حساب؟{" "}
         <BoldLink onClick={switchToSignup} href="#">
           انشاء حساب
         </BoldLink>

@@ -23,7 +23,14 @@ const Search = ({ CartItem }) => {
       // User is not logged in, go to registration route
       history.push("/account");
     }
+    
   };
+  const handleLogout = () => {
+    AuthService.logout();
+    // Redirect to the home page or any other desired page after logout
+    history.push("/");
+  };
+  
   return (
     <>
       <section className='search'>
@@ -41,13 +48,29 @@ const Search = ({ CartItem }) => {
           </div>
 
           <div className='icon f_flex width'>
-          <Link to='/profile'>
-            <i className='fa fa-user icon-circle'></i>
-            </Link>
-            <div className='cart' onClick={handleClick}>
-              <i className='fa fa-plus icon-circle'></i>
-              <span>{CartItem.length === 0 ? "" : CartItem.length}</span>
-            </div>
+          <div className='icon f_flex width'>
+  {isLoggedIn ? (
+    <Link to='/profile'>
+      <i className='fa fa-user icon-circle'></i>
+        {/* <span>Profile</span> */}
+    </Link>
+  ) : (
+    <Link to="/account">
+      <i className='fa fa-user icon-circle'></i>
+      {/* <span>Login</span> */}
+    </Link>
+  )}
+  <div className='cart' onClick={handleClick}>
+    <i className='fa fa-plus icon-circle'></i>
+    <span>{CartItem.length === 0 ? "" : CartItem.length}</span>
+  </div>
+  {isLoggedIn ? (
+    <div className='logout' onClick={handleLogout}>
+      <i className='fa fa-sign-out icon-circle'></i>
+    </div>
+  ) : null}
+</div>
+
           </div>
         </div>
       </section>
