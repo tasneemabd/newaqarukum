@@ -9,7 +9,7 @@ const Footer = () => {
         <div className='container grid2'>
           <div className='box'>
             <h1 style={{ direction: 'rtl' }}>عقاركم</h1>
-            <img src={images} style={{ width: '300px',height:'200px'  }}/>
+            {/* <img src={images} style={{ width: '300px',height:'200px'  }}/> */}
             <br/>
             <br/>
             <div className='icon d_flex'>
