@@ -562,7 +562,7 @@ const handlePropertyTypeChange = (e) => {
     </div>
     <hr />
     <div className="form-group">
-      <label className="slider-label">عدد الغرف: {roomCount}</label>
+      <label className="slider-label"  >عدد الغرف:  {roomCount}</label>
       <Slider
         aria-label="Custom marks"
         value={roomCount}

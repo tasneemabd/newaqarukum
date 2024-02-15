@@ -14,7 +14,7 @@ import { AccountContext } from './AccountContext';
 
 export function SignupForm(props) {
   const { switchToSignin } = useContext(AccountContext);
-  const history = useHistory();  // Initialize useHistory
+  const history = useHistory();  // Initialize useHistory 
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');

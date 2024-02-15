@@ -209,7 +209,7 @@ const Product = () => {
 <td class="text-left"> توفر مكيفات
 : {ad.airConditioning ? <i className="fa-solid fa-circle-check" style={{ color: '#008d6a' }}></i> : null}
 </td>
-</tr>
+</tr>   
 <tr>
 <td class="text-left">رقم الإعلان:{ad.AdvertiserNum}
 </td>

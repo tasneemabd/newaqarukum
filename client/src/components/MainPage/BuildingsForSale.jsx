@@ -41,7 +41,7 @@ const BuildingsForSale = () => {
   }
   const apartmentsForRent = Advertisement.filter((ad) => ad.propertyType === 'BuildingsForSale');
 
-  return (
+  return (  
     
     <>
   
